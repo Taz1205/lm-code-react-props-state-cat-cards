@@ -37,13 +37,16 @@ function App(): JSX.Element {
           <h2 className="header__title"> Dog details are as follows: </h2>
           <br />
           {dogs.map((dog) => (
-            <DogCard
-              key={dog.id}
-              name={dog.name}
-              species={dog.species}
-              favFoods={dog.favFoods}
-              birthYear={dog.birthYear}
-            />
+            <>
+              <DogCard
+                key={dog.id}
+                name={dog.name}
+                species={dog.species}
+                favFoods={dog.favFoods}
+                birthYear={dog.birthYear}
+                imageUrl={dog.imageUrl}
+              />
+            </>
           ))}
         </div>
       </main>

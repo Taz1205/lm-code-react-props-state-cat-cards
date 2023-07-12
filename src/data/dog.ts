@@ -4,4 +4,5 @@ export default interface Dog {
   species: string;
   favFoods: Array<string>;
   birthYear: number;
+  imageUrl: string;
 }
