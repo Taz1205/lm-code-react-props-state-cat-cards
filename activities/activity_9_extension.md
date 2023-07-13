@@ -12,19 +12,19 @@ Much to our Cats _disgust_, you may have spotted some Dog data lurking around wh
 
 Knowing what you've learnt from looping through cats, can you create a Dog Component and render some dog cards on the screen?
 
--   Look in `src > data > dog-data.ts` to let the dogs out
+- Look in `src > data > dog-data.ts` to let the dogs out
 
--   Remember to add a key when mapping over doggy data 🔑
+- Remember to add a key when mapping over doggy data 🔑
 
--   Map over the dog data above or below where you map over the cat data (adding a new `useState()`)
+- Map over the dog data above or below where you map over the cat data (adding a new `useState()`)
 
--   Try and do this from memory to test yourself!
+- Try and do this from memory to test yourself!
 
--   Could you add an extra line to the Header which counts how many dogs there are in the app?
+- Could you add an extra line to the Header which counts how many dogs there are in the app?
 
 Once you've got this working (creating components and passing props and state is great practice), a further consideration might be:
 
--   Do you need a new Dog card component at all? 🤯 Re-naming CatCard to just Card and passing the dog data to this card component might save some code? Don't let the cats hear about it though! 😾
+- Do you need a new Dog card component at all? 🤯 Re-naming CatCard to just Card and passing the dog data to this card component might save some code? Don't let the cats hear about it though! 😾
 
 # Extension 2 - Food for Thought 🍤
 
@@ -38,7 +38,7 @@ Using what you know about JavaScript, passing props and inserting logic through 
 
 It would be great for our users to be able to add their favourite cats (and dogs?). Can you:
 
--   Add a form for users to submit new cats, with input text boxes for fields like name, species, fave food, etc.
+- Add a form for users to submit new cats, with input text boxes for fields like name, species, fave food, birth year etc.
 
 Hint: the `value` of these `<input>` elements will need to be stored in state variables.
 

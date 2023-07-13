@@ -145,3 +145,32 @@ body {
   width: 100%;
   height: auto;
 }
+.form__wrapper {
+  width: 50%;
+  background-color: var(--orange);
+  border: 6px solid var(--navy);
+  display: flex;
+  justify-content: center;
+  margin: 1;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+.form__container label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.1em;
+}
+
+.form__container input {
+  margin-bottom: 20px;
+  width: 100%;
+}
+.button {
+  width: 50%;
+  background-color: var(--navy);
+  color: whitesmoke;
+}
+.button:hover {
+  background-color: var(--yellow);
+  color: black;
+}
