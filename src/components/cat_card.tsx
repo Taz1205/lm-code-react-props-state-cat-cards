@@ -20,6 +20,7 @@ interface CatCardProps {
   favFoods: Array<string>;
   birthYear: number;
   catIndex: number;
+  imageUrl: string;
 }
 
 const images = [
@@ -143,17 +144,32 @@ const CatCard: React.FC<CatCardProps> = ({
   favFoods,
   birthYear,
   catIndex,
+  imageUrl,
 }) => {
+  const catImage = imageUrl
+    ? imageUrl
+    : catIndex < images.length
+    ? images[catIndex].image
+    : "";
+
   return (
     <div className="card">
-      {catIndex < images.length && (
+      {catImage && (
         <CatImage
-          image={images[catIndex].image}
-          altText={images[catIndex].altText}
-          licenceType={images[catIndex].licenceType}
-          licenceUrl={images[catIndex].licenceUrl}
-          attributionName={images[catIndex].attributionName}
-          attributionUrl={images[catIndex].attributionUrl}
+          image={catImage}
+          licenceType={
+            catIndex < images.length ? images[catIndex].licenceType : ""
+          }
+          licenceUrl={
+            catIndex < images.length ? images[catIndex].licenceUrl : ""
+          }
+          attributionName={
+            catIndex < images.length ? images[catIndex].attributionName : ""
+          }
+          attributionUrl={
+            catIndex < images.length ? images[catIndex].attributionUrl : ""
+          }
+          altText="Cat Picture"
         />
       )}
       <h3 className="card__text card__header">{name}</h3>

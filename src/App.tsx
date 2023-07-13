@@ -16,38 +16,67 @@ function App(): JSX.Element {
 
   const [newCatName, setNewCatName] = useState<string>("");
   const [newCatSpecies, setNewCatSpecies] = useState<string>("");
-  const [newCatFavFood, setNewCatFavFood] = useState<string>("");
+  const [newCatFavFood, setNewCatFavFood] = useState<string[]>([]);
   const [newCatBirthYear, setNewCatBirthYear] = useState<number>(0);
+  const [newCatImageUrl, setNewCatImageUrl] = useState<string>("");
 
   const [newDogName, setNewDogName] = useState<string>("");
   const [newDogSpecies, setNewDogSpecies] = useState<string>("");
-  const [newDogFavFood, setNewDogFavFood] = useState<string>("");
+  const [newDogFavFood, setNewDogFavFood] = useState<string[]>([]);
   const [newDogBirthYear, setNewDogBirthYear] = useState<number>(0);
   const [newDogImageURL, setNewDogImageURL] = useState<string>("");
 
+  const catCount = cats.length;
+  const dogCount = dogs.length;
+
   const handleAddCat = () => {
     const newCat = {
-      id: (cats.length + 1).toString(),
+      id: (catCount + 1).toString(),
       name: newCatName,
       species: newCatSpecies,
-      favFoods: newCatFavFood.split(",").map((item) => item.trim()),
+      favFoods: newCatFavFood,
       birthYear: newCatBirthYear,
+      imageUrl: newCatImageUrl,
     };
 
     setCats([...cats, newCat]);
 
     setNewCatName("");
     setNewCatSpecies("");
-    setNewCatFavFood("");
+    setNewCatFavFood([]);
     setNewCatBirthYear(0);
+    setNewCatImageUrl("");
+  };
+  const handleCatFavFoodChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const favFoodsList = event.target.value.split(" ");
+    setNewCatFavFood(favFoodsList);
+  };
+  const handleDogFavFoodChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const favFoodsList = event.target.value.split(" ");
+    setNewDogFavFood(favFoodsList);
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewCatImageUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleAddDog = () => {
     const newDog = {
-      id: (dogs.length + 1).toString(),
+      id: (dogCount + 1).toString(),
       name: newDogName,
       species: newDogSpecies,
-      favFoods: newDogFavFood.split(",").map((item) => item.trim()),
+      favFoods: newDogFavFood,
       birthYear: newDogBirthYear,
       imageUrl: newDogImageURL,
     };
@@ -56,13 +85,10 @@ function App(): JSX.Element {
 
     setNewDogName("");
     setNewDogSpecies("");
-    setNewDogFavFood("");
+    setNewDogFavFood([]);
     setNewDogBirthYear(0);
     setNewDogImageURL("");
   };
-
-  const catCount = cats.length;
-  const dogCount = dogs.length;
 
   return (
     <>
@@ -78,6 +104,7 @@ function App(): JSX.Element {
               favFoods={cat.favFoods}
               birthYear={cat.birthYear}
               catIndex={index}
+              imageUrl={cat.imageUrl}
             />
           ))}
         </div>
@@ -112,7 +139,7 @@ function App(): JSX.Element {
                 type="text"
                 placeholder="Favorite food (separated by commas)"
                 value={newCatFavFood}
-                onChange={(event) => setNewCatFavFood(event.target.value)}
+                onChange={handleCatFavFoodChange}
               />
             </label>
 
@@ -128,6 +155,14 @@ function App(): JSX.Element {
               />
             </label>
 
+            <label>
+              Image of your cat:
+              <input
+                type="file"
+                accept=".jpg, .jpeg, .png"
+                onChange={handleImageUpload}
+              />
+            </label>
             <button className="button" onClick={handleAddCat}>
               Add Cat
             </button>
@@ -181,7 +216,7 @@ function App(): JSX.Element {
                 type="text"
                 placeholder="Favorite food (separated by commas)"
                 value={newDogFavFood}
-                onChange={(event) => setNewDogFavFood(event.target.value)}
+                onChange={handleDogFavFoodChange}
               />
             </label>
 
